@@ -3,10 +3,6 @@
 * What is TicTokGame?
 * Server Side Application.
 * Client Side Application.
-* Features:
-  * Play with computer.
-  * Two Players.
-  * Play va Neywork.
 * How to use it?
 * Tecgnologes uses in it.
 * Tools and IDEs uses.
@@ -32,3 +28,30 @@ It's has a Server side to do network stream between the client in online mood an
    
    
 ###### **Client Side Application**
+ * Client Application has a several mode to enable players to play in all condition and allow them to record game if they want that.
+ * Moods:
+  * Play with computer: this is demond in an Ai has hard mood and easy mood.
+  * Two Players: this is to enable two player to play local on one computer.
+  * Play va Neywork: this is playing  over netwok in different divses.
+  
+###### **How to use it?**
+If you want to play local or with the computer just run the client jar file 
+if uou want to play over network:
+ *connect database
+ *start server
+ *enter the ip of the server
+ *log in or regester
+ *chose one of the online plyers to play with 
+ 
+ 
+ ###### **Tecgnologes uses in it.**
+ * javafx.
+ * Derby database.
+ * io socket java.
+ * json.
+
+
+ ###### **Tools and IDEs uses.**
+* Netbeans.
+* scene builder.
+* photoshop
