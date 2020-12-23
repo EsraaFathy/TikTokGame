@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<Pane id="StartPane" fx:id="StartPane" maxHeight="748.0" maxWidth="1189.0" minHeight="600.0" minWidth="1123.0" prefHeight="748.0" prefWidth="1189.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="localAi.HomePaneController">
+         <children>
+      <ImageView disable="true" fitHeight="796.0" fitWidth="1216.0" focusTraversable="true" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/7.jpg" />
+         </image>
+         <effect>
+            <Glow level="0.09">
+               <input>
+                  <DropShadow />
+               </input>
+            </Glow>
+         </effect>
+      </ImageView>
+            <Button fx:id="btnPlayAi" layoutX="55.0" layoutY="307.0" mnemonicParsing="false" onAction="#handlePlayAiAction" prefHeight="285.0" prefWidth="204.0" style="-fx-background-color: #D0EB2F; -fx-background-radius: 90;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+         <effect>
+            <Reflection bottomOpacity="0.09" fraction="0.36" topOpacity="0.28">
+               <input>
+                  <GaussianBlur radius="28.9" />
+               </input>
+            </Reflection>
+         </effect>
+            </Button>
+            <Button fx:id="btnPlayLocal" layoutX="317.0" layoutY="304.0" mnemonicParsing="false" onAction="#handlePlayLocalAction" prefHeight="285.0" prefWidth="204.0" style="-fx-background-color: #C746B0; -fx-background-radius: 90;" textFill="#574b4b">
+               <font>
+                  <Font size="24.0" />
+               </font>
+         <effect>
+            <Reflection bottomOpacity="0.08" fraction="0.38" topOpacity="0.12">
+               <input>
+                  <GaussianBlur radius="24.96" />
+               </input>
+            </Reflection>
+         </effect>
+            </Button>
+            <Button fx:id="btnPlayNetwork" layoutX="575.0" layoutY="304.0" mnemonicParsing="false" onAction="#handlePlayNetworkAction" prefHeight="285.0" prefWidth="204.0" style="-fx-background-color: #46BCC7; -fx-background-radius: 90;" textAlignment="JUSTIFY" underline="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+         <effect>
+            <Reflection fraction="0.39" topOpacity="0.33">
+               <input>
+                  <GaussianBlur radius="30.48" />
+               </input>
+            </Reflection>
+         </effect>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+            </Button>
+            <Button fx:id="btnExit" layoutX="913.0" layoutY="625.0" mnemonicParsing="false" onAction="#handleExitAction" prefHeight="56.0" prefWidth="105.0" style="-fx-background-color: #46BCC7; -fx-background-radius: 80;" text="Exit">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+         <effect>
+            <Glow>
+               <input>
+                  <Lighting diffuseConstant="0.93" specularConstant="0.89" specularExponent="36.1" surfaceScale="5.65">
+                     <bumpInput>
+                        <Shadow height="52.1" radius="18.552500000000002" width="24.11" />
+                     </bumpInput>
+                     <light>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect></Button>
+      <ImageView disable="true" fitHeight="176.0" fitWidth="211.0" layoutX="51.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/777.png" />
+         </image>
+      </ImageView>
+      <ImageView disable="true" fitHeight="188.0" fitWidth="182.0" layoutX="327.0" layoutY="355.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/2.png" />
+         </image>
+      </ImageView>
+      <ImageView disable="true" fitHeight="194.0" fitWidth="239.0" layoutX="552.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/rtt.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="103.0" layoutY="234.0" text=" Single">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.8592233009708738" endY="1.0" startY="0.043689320388349516">
+               <stops>
+                  <Stop color="#3fa7d0" />
+                  <Stop color="#ddeb0e" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="299.0" layoutY="234.0" prefHeight="38.0" prefWidth="239.0" text="Multible player" textAlignment="CENTER">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#868d25" />
+                  <Stop color="#ff6b0ff7" offset="0.5032679738562091" />
+                  <Stop color="#ff6b0ff7" offset="0.5686274509803922" />
+                  <Stop color="#ff6b0ff7" offset="0.6470588235294117" />
+                  <Stop color="#cc4976" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="630.0" layoutY="233.0" text="Online ">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.6941747572815534" endY="1.0">
+               <stops>
+                  <Stop color="#268c86" />
+                  <Stop color="#f8ff0ff7" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="39.0" layoutY="61.0" prefHeight="140.0" prefWidth="758.0" text="Select Your Favorite Mode">
+         <textFill>
+            <LinearGradient endX="0.6941747572815534" endY="1.0">
+               <stops>
+                  <Stop color="#f01a8f" />
+                  <Stop color="#1a67f0" offset="0.5588235294117647" />
+                  <Stop color="#e3e107" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Simplified Arabic Bold" size="59.0" />
+         </font>
+         <effect>
+            <DropShadow color="#b9c352" height="185.81" radius="102.5125" spread="0.43" width="226.24" />
+         </effect>
+      </Label>
+         </children>
+      </Pane>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1189.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="localAi.MultiPlayerGameController">
+   <children>
+      <Pane prefHeight="736.0" prefWidth="1189.0">
+         <children>
+            <ImageView fitHeight="736.0" fitWidth="1189.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/rrr.jpg" />
+               </image>
+            </ImageView>
+            <ImageView disable="true" fitHeight="468.0" fitWidth="487.0" layoutX="343.0" layoutY="154.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/jj.jpg" />
+               </image>
+               <effect>
+                  <Glow level="0.65">
+                     <input>
+                        <Lighting diffuseConstant="1.29" specularConstant="0.0" specularExponent="9.76" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow color="#9a1515" height="13.4175" radius="7.326875" width="17.89" />
+                           </bumpInput>
+                           <light>
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Glow>
+               </effect>
+            </ImageView>
+            <Button fx:id="back" cancelButton="true" layoutX="31.0" layoutY="27.0" mnemonicParsing="false" onAction="#handlBackAction" prefHeight="35.0" prefWidth="69.0" style="-fx-background-color: #170999; -fx-background-radius: 20;" text="&lt;--" textFill="#c7e408">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <effect>
+                  <Glow>
+                     <input>
+                        <Lighting specularConstant="0.45" specularExponent="10.73" surfaceScale="3.45">
+                           <bumpInput>
+                              <Shadow height="27.22" radius="18.552500000000002" width="48.99" />
+                           </bumpInput>
+                           <light>
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Glow>
+               </effect></Button>
+            <Button fx:id="newGame" defaultButton="true" layoutX="497.0" layoutY="648.0" mnemonicParsing="false" onAction="#handleNewGameAction" prefHeight="55.0" prefWidth="180.0" style="-fx-background-color: #170999; -fx-background-radius: 40;" text="New Game">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="0.5048543689320388">
+                     <stops>
+                        <Stop color="#e11515" />
+                        <Stop color="#cbe502" offset="0.19934640522875818" />
+                        <Stop color="#d60404" offset="0.6601307189542485" />
+                        <Stop color="#cae402" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <effect>
+                  <Glow>
+                     <input>
+                        <Lighting diffuseConstant="1.12" specularConstant="0.28" specularExponent="18.54" surfaceScale="3.21">
+                           <bumpInput>
+                              <Shadow height="39.66" radius="18.5525" width="36.55" />
+                           </bumpInput>
+                           <light>
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Glow>
+               </effect></Button>
+            <Label fx:id="firstPlayerName" alignment="CENTER" layoutX="44.0" layoutY="278.0" prefHeight="45.0" prefWidth="139.0" text="Player1" textFill="#ebff0a">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font></Label>
+            <Label fx:id="firstPlayerScore" layoutX="100.0" layoutY="347.0" text="0">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="0.5048543689320388">
+                     <stops>
+                        <Stop color="#e11515" />
+                        <Stop color="#cae402" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font></Label>
+            <Label fx:id="currentPlayerSymbol" layoutX="576.0" layoutY="78.0" prefWidth="37.0" text="X" textFill="#dcee12">
+               <font>
+                  <Font name="System Bold" size="38.0" />
+               </font></Label>
+            <Label fx:id="secondPlayerScore" layoutX="1021.0" layoutY="337.0" text="0">
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#e11515" />
+                        <Stop color="#cae402" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font></Label>
+            <Label fx:id="secondPlayerName" alignment="CENTER" layoutX="977.0" layoutY="278.0" prefHeight="45.0" prefWidth="114.0" text="Player2" textFill="#e80c0c">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font></Label>
+            <GridPane fx:id="boardPane" layoutX="347.0" layoutY="149.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="480.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

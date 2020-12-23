@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="JavaFXFinalProject.jnlp">
+  <information>
+    <title>JavaFXFinalProject</title>
+    <vendor>Mohamed</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="JavaFXFinalProject.jar" size="4643255" download="eager" />
+    <jar href="lib/derby.jar" size="3104883" download="eager" />
+    <jar href="lib/derbyclient.jar" size="585704" download="eager" />
+    <jar href="lib/derbynet.jar" size="266471" download="eager" />
+    <jar href="lib/json-simple-1.1.1.jar" size="23737" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="JavaFXFinalProject" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="localAi.JavaFXFinalProject"  name="JavaFXFinalProject" />
+  <update check="always"/>
+</jnlp>

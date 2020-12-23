@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1189.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="localAi.SinglePlayerGameController">
+    <children>
+      <Pane prefHeight="736.0" prefWidth="1189.0">
+         <children>
+            <ImageView fitHeight="736.0" fitWidth="1189.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/rrr.jpg" />
+               </image>
+            </ImageView>
+            <ImageView disable="true" fitHeight="468.0" fitWidth="487.0" layoutX="343.0" layoutY="154.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/jj.jpg" />
+               </image>
+               <effect>
+                  <Glow level="0.22">
+                     <input>
+                        <Lighting diffuseConstant="1.29" specularConstant="0.0" specularExponent="9.76" surfaceScale="10.0">
+                           <bumpInput>
+                              <Shadow height="90.19" radius="45.177499999999995" width="92.52" />
+                           </bumpInput>
+                           <light>
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Glow>
+               </effect>
+            </ImageView>
+            <Button fx:id="back" layoutX="42.0" layoutY="34.0" mnemonicParsing="false" onAction="#handlBackAction" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #170999; -fx-background-radius: 20;" text="&lt;--" textFill="#d3ee03">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+               <effect>
+                  <Glow level="0.46">
+                     <input>
+                        <Lighting surfaceScale="4.3">
+                           <bumpInput>
+                              <Shadow height="42.77" radius="16.997500000000002" width="27.22" />
+                           </bumpInput>
+                           <light>
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Glow>
+               </effect></Button>
+            <Button fx:id="newGame" layoutX="472.0" layoutY="641.0" mnemonicParsing="false" onAction="#handleNewGameAction" prefHeight="61.0" prefWidth="205.0" style="-fx-background-color: #170999; -fx-background-radius: 40;" text="New Game" textFill="#def206">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+               <effect>
+                  <Glow>
+                     <input>
+                        <Lighting specularExponent="17.56" surfaceScale="4.18">
+                           <bumpInput>
+                              <Shadow height="39.66" radius="14.665" />
+                           </bumpInput>
+                           <light>
+                           </light>
+                        </Lighting>
+                     </input>
+                  </Glow>
+               </effect></Button>
+            <Label fx:id="firstPlayerName" alignment="CENTER" layoutX="82.0" layoutY="247.0" text="Label" textFill="#daf202">
+               <font>
+                  <Font size="30.0" />
+               </font></Label>
+            <Label fx:id="firstPlayerScore" layoutX="111.0" layoutY="323.0" text="0">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#d7e115" />
+                        <Stop color="#dd1f1f" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill></Label>
+            <Label fx:id="currentPlayerSymbol" layoutX="567.0" layoutY="76.0" text="X" textFill="#b9fc10">
+               <font>
+                  <Font name="System Bold" size="46.0" />
+               </font></Label>
+            <Label fx:id="secondPlayerScore" layoutX="992.0" layoutY="303.0" text="0">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#d7e115" />
+                        <Stop color="#bd0000" offset="0.8300653594771242" />
+                        <Stop color="#dd1f1f" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill></Label>
+            <Label fx:id="secondPlayerName" alignment="CENTER" layoutX="928.0" layoutY="247.0" text="Computer" textFill="#d30101">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font></Label>
+            <GridPane fx:id="boardPane" layoutX="343.0" layoutY="144.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="487.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

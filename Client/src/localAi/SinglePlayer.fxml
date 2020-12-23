@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="1189.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="localAi.SinglePlayerController">
+   <children>
+      <ImageView disable="true" fitHeight="736.0" fitWidth="1189.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/7.jpg" />
+         </image>
+      </ImageView>
+      <ImageView disable="true" fitHeight="428.0" fitWidth="687.0" layoutX="61.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/l.jpg" />
+         </image>
+         <effect>
+            <GaussianBlur />
+         </effect>
+      </ImageView>
+      <Label layoutX="106.0" layoutY="312.0" prefHeight="26.0" prefWidth="221.0" text="Player O" textFill="#f52512">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Label>
+      
+      <TextField fx:id="firstPlayerName" layoutX="327.0" layoutY="312.0" prefHeight="38.0" prefWidth="345.0" promptText="Enter Player Name" text="Player O" />
+      
+      <Button fx:id="start" defaultButton="true" layoutX="146.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleStartAction" prefHeight="87.0" prefWidth="205.0" style="-fx-background-color: #141717; -fx-background-radius: 35;" text="Start" textFill="#cce011">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+         <effect>
+            <Glow level="0.43">
+               <input>
+                  <Lighting diffuseConstant="0.76" specularConstant="0.42" surfaceScale="3.09">
+                     <bumpInput>
+                        <Shadow color="#000000fc" height="58.6125" radius="29.510624999999997" width="61.43" />
+                     </bumpInput>
+                     <light>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect></Button>
+      <Button fx:id="back" layoutX="35.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleBackAction" prefHeight="44.0" prefWidth="71.0" style="-fx-background-color: #141717; -fx-background-radius: 20;" text="&lt;--" textFill="#e0ed13">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+         <effect>
+            <Glow>
+               <input>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect></Button>
+      <CheckBox fx:id="checkBoxAllow" layoutX="327.0" layoutY="407.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="178.0" text="Allow Record">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#3e1dcd" />
+                  <Stop color="#cd1f1f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="checkboxMode" layoutX="327.0" layoutY="368.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="178.0" text="Hard Mode">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#3e1dcd" />
+                  <Stop color="#cd1f1f" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill></CheckBox>
+      <Button fx:id="btn_history" layoutX="466.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleHistoryAction" prefHeight="87.0" prefWidth="205.0" style="-fx-background-color: #141717; -fx-background-radius: 35;" text="History" textFill="#cce011">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+         <effect>
+            <Glow level="0.5">
+               <input>
+                  <Lighting diffuseConstant="0.78" specularConstant="0.35" surfaceScale="4.06">
+                     <bumpInput>
+                        <Shadow height="39.66" radius="19.33" width="39.66" />
+                     </bumpInput>
+                     <light>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+      </Button>
+      <Label layoutX="105.0" layoutY="264.0" prefHeight="21.0" prefWidth="111.0" text="Player X" textFill="#cefc05">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="327.0" layoutY="470.0" prefHeight="21.0" prefWidth="258.0" text="The Defoult is an easy mode">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ff6666" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="327.0" layoutY="264.0" prefHeight="21.0" prefWidth="184.0" text="Computer" textFill="#e7f216">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

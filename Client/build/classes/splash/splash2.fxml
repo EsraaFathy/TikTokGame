@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pane" prefHeight="736.0" prefWidth="1189.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="splash.FXMLDocumentController">
+   <children>
+      <ImageView disable="true" fitHeight="769.0" fitWidth="1209.0" focusTraversable="true" layoutY="-5.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/7.jpg" />
+         </image>
+         <effect>
+            <Glow level="0.09">
+               <input>
+                  <DropShadow />
+               </input>
+            </Glow>
+         </effect>
+      </ImageView>
+      <Line endX="-107.0" endY="705.0" layoutX="187.0" layoutY="59.0" startX="-107.0" startY="-59.0" strokeLineJoin="BEVEL" strokeWidth="6.0">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+         <stroke>
+            <LinearGradient endX="1.0" endY="0.7524271844660194">
+               <stops>
+                  <Stop color="#f5f2f2" />
+                  <Stop color="#f10c0c" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
+      <Line endX="1101.0" endY="15.0" fill="#5448dd" layoutX="108.0" layoutY="652.0" startX="-107.00003051757812" startY="7.0" strokeWidth="6.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#d0eb03" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
+      <Label layoutX="167.0" layoutY="148.0" prefHeight="108.0" prefWidth="603.0" text="Tic Tac Toe">
+         <font>
+            <Font name="Times New Roman Bold" size="96.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="0.7524271844660194">
+               <stops>
+                  <Stop color="#f80905" />
+                  <Stop color="#d5ff05" offset="0.3714833759590793" />
+                  <Stop color="#ff2f05" offset="0.5354504120488776" />
+                  <Stop color="#ffff33" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <effect>
+            <DropShadow color="#ad7931" height="195.15" radius="79.1925" width="123.62" />
+         </effect>
+      </Label>
+      <Label layoutX="947.0" layoutY="680.0" prefHeight="27.0" prefWidth="96.0" text="Loading ..." textFill="#eee8e8">
+         <font>
+            <Font name="Times New Roman Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="306.0" layoutY="235.0" prefHeight="108.0" prefWidth="96.0" text="X" textFill="#ddff02">
+         <font>
+            <Font name="Segoe Script Bold" size="96.0" />
+         </font>
+         <effect>
+            <DropShadow color="#c34734" height="61.43" radius="20.1075" />
+         </effect>
+      </Label>
+      <Label layoutX="397.0" layoutY="235.0" text="O">
+         <font>
+            <Font name="Segoe Script Bold" size="96.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#d74026" />
+                  <Stop color="#f51307" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+         <effect>
+            <DropShadow color="#c77c1c" height="48.99" radius="23.995" width="48.99" />
+         </effect>
+      </Label>
+      <ImageView fitHeight="53.0" fitWidth="44.0" layoutX="889.0" layoutY="674.0" opacity="0.96" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/download.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="737.0" layoutY="677.0" prefHeight="35.0" prefWidth="149.0" text="ITI  Ismailia  2020" textFill="#f5f2f2">
+         <font>
+            <Font name="Times New Roman Bold" size="17.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

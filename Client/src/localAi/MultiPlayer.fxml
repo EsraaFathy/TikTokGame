@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="1189.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="localAi.MultiPlayerController">
+   <children>
+      <ImageView disable="true" fitHeight="743.0" fitWidth="1302.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/7.jpg" />
+         </image>
+      </ImageView>
+      <ImageView disable="true" fitHeight="428.0" fitWidth="687.0" layoutX="61.0" layoutY="155.0" opacity="0.73" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/l.jpg" />
+         </image>
+         <effect>
+            <GaussianBlur />
+         </effect>
+      </ImageView>
+      <Label layoutX="106.0" layoutY="274.0" prefHeight="38.0" prefWidth="141.0" text="Player X" textFill="#e6f007">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Label>
+      <Label layoutX="106.0" layoutY="342.0" prefHeight="26.0" prefWidth="125.0" text="Player O" textFill="#f22404">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Label>
+      <TextField fx:id="firstPlayerName" layoutX="326.0" layoutY="274.0" prefHeight="38.0" prefWidth="345.0" promptText="Enter First Player Name" text="Player 1" />
+      <CheckBox fx:id="checkBoxAllowRecord" layoutX="326.0" layoutY="405.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="345.0" text="Allow Record">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0" startY="0.6407766990291263">
+               <stops>
+                  <Stop color="#383cc3" />
+                  <Stop color="#eb2e11" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </CheckBox>
+      <Button fx:id="start" defaultButton="true" layoutX="146.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleStartAction" prefHeight="87.0" prefWidth="202.0" style="-fx-background-color: #141717; -fx-background-radius: 35;" text="Start" textFill="#cce011">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+         <effect>
+            <Glow level="0.5">
+               <input>
+                  <Lighting diffuseConstant="1.05" specularConstant="0.4" specularExponent="26.83" surfaceScale="5.28">
+                     <bumpInput>
+                        <Shadow height="36.55" radius="10.7775" width="8.56" />
+                     </bumpInput>
+                     <light>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+      </Button>
+      <Button fx:id="back" layoutX="35.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleBackAction" prefHeight="44.0" prefWidth="71.0" style="-fx-background-color: #141717; -fx-background-radius: 20;" text="&lt;--" textFill="#cfe52e">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+         <effect>
+            <Glow>
+               <input>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+      </Button>
+      <TextField fx:id="secondPlayerName" layoutX="326.0" layoutY="342.0" prefHeight="38.0" prefWidth="345.0" promptText="Enter Second Player Name" text="Player 2" />
+      <Button fx:id="btn_history" layoutX="475.0" layoutY="575.0" mnemonicParsing="false" onAction="#handleHistoryAction" prefHeight="87.0" prefWidth="202.0" style="-fx-background-color: #141717; -fx-background-radius: 35;" text="History" textFill="#cce011">
+         <font>
+            <Font name="System Bold" size="41.0" />
+         </font>
+         <effect>
+            <Glow level="0.5">
+               <input>
+                  <Lighting diffuseConstant="1.05" specularConstant="0.4" specularExponent="26.83" surfaceScale="5.28">
+                     <bumpInput>
+                        <Shadow height="64.54" radius="17.775000000000002" width="8.56" />
+                     </bumpInput>
+                     <light>
+                     </light>
+                  </Lighting>
+               </input>
+            </Glow>
+         </effect>
+      </Button>
+   </children>
+</Pane>
