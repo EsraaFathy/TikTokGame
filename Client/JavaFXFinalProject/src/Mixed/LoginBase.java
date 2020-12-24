@@ -48,13 +48,14 @@ import org.json.simple.parser.ParseException;
 
 public class LoginBase extends AnchorPane {
 
-    private String emailText, passwordtext;
+    String _emailText, _passwordtext;
     boolean _isEmail, _isPassword;
-    private Socket client;
-    private DataInputStream dis;
-    private PrintStream ps;
+    Socket client;
+    DataInputStream dis;
+    PrintStream ps;
 
-    private Thread th;
+    private Thread t;
+
     String _type, _key;
     JSONObject jsonObject;
     String jsonText;
@@ -265,9 +266,6 @@ public class LoginBase extends AnchorPane {
         pane.getChildren().add(stackPane);
         getChildren().add(pane);
 
-        //////////////////////////////////////////
-        //**when checkbox is selected the password become visible
-        //////////////////////////////////////////
         checkBoxId.selectedProperty().addListener(((observable, oldValue, newValue) -> {
             if (checkBoxId.isSelected()) {
                 passTextField.setText(passPasswordField.getText());
@@ -279,26 +277,27 @@ public class LoginBase extends AnchorPane {
 
         }));
 
-        ////when login button is pressed
         btnLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ////////
-                //**get data from text field
-                ////////
+                System.out.println("btn clicked");
                 _getData();
-                _isEmail = _validateEmail(emailText);
-                _isPassword = _validatePassword(passwordtext);
+
+                _isEmail = _validateEmail(_emailText);
+                _isPassword = _validatePassword(_passwordtext);
+                //    _isIp = _validateIp(_ipText);
                 if (!_isEmail || !_isPassword) {
-                    //there is error in validation
                 } else {
-                    //validation is succeeded
-                    _connectServer(emailText, passwordtext);
+                    System.out.println("before connect server");
+                    _connectServer(_emailText, _passwordtext);
+                    //_key="SUCCESS";
+
                 }
+
             }
+
         });
-        
-        
+
         btnRegister.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -314,10 +313,10 @@ public class LoginBase extends AnchorPane {
 
                 Parent root;
                 try {
-                    _clear();
                     root = FXMLLoader.load(getClass().getResource("/localAi/HomePane.fxml"));
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.getIcons().add(new Image(getClass().getResource("/img/logo.png").toExternalForm()));
 
                     stage.setScene(scene);
                     stage.resizableProperty().setValue(Boolean.FALSE);
@@ -332,32 +331,25 @@ public class LoginBase extends AnchorPane {
 
         });
 
+        _clear();
     }
 
-    ////////////////////////
-    //clear text fields
-    ////////////////////////
     void _clear() {
         emailField.clear();
         emailError.setText("");
         passPasswordField.clear();
         passwordError.setText("");
-
+//        ipField.clear();
+//        ipError.setText("");
     }
 
-    ////////////////////////
-    //get data from textfields
-    ////////////////////////
     void _getData() {
-        emailText = emailField.getText();
-        passwordtext = !checkBoxId.isSelected() ? passPasswordField.getText() : passTextField.getText();
+        _emailText = emailField.getText();
+        _passwordtext = !checkBoxId.isSelected() ? passPasswordField.getText() : passTextField.getText();
         //  _ipText = ipField.getText();
 
     }
 
-    ////////////////////////
-    //check if email is valid or not
-    ////////////////////////
     boolean _validateEmail(String email) {
         final String _emailPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
@@ -373,9 +365,6 @@ public class LoginBase extends AnchorPane {
 
     }
 
-    ////////////////////////
-    //check if password is valid or not
-    ////////////////////////
     boolean _validatePassword(String pass) {
         if (pass.isEmpty() || pass.trim().length() < 8) {
             passwordError.setText("password must be greater than 8 char");
@@ -387,38 +376,54 @@ public class LoginBase extends AnchorPane {
 
     }
 
+//    boolean _validateIp(String ip) {
+//        String zeroTo255
+//                = "(\\d{1,2}|(0|1)\\"
+//                + "d{2}|2[0-4]\\d|25[0-5])";
+//        String regex
+//                = zeroTo255 + "\\."
+//                + zeroTo255 + "\\."
+//                + zeroTo255 + "\\."
+//                + zeroTo255;
+//
+//        Pattern pattern = Pattern.compile(regex);
+//        Matcher matcher = pattern.matcher(ip);
+//
+//        if (!matcher.matches()) {
+//            ipError.setText("IP address must be valid");
+//            return false;
+//        } else {
+//            ipError.setText("");
+//            return true;
+//        }
+//
+//    }
     void _connectServer(String email, String password) {
 
-        th = new Thread() {
+        t = new Thread() {
+
             @Override
             public void run() {
                 try {
-
-                    //connect to the server
                     System.out.println("enter connectSerever");
-                    client = new Socket(IpPaneController.iipp, 5005);
+                    client = new Socket(IpPaneController.iipp, IpPaneController.PORT_NUMBER);
                     dis = new DataInputStream(client.getInputStream());
                     ps = new PrintStream(client.getOutputStream());
-
-                    //prepare json
                     jsonObject = new JSONObject();
                     jsonObject.put("TYPE", "LOGIN");
                     jsonObject.put("EMAIL", email);
                     jsonObject.put("PASSWORD", password);
                     jsonText = JSONValue.toJSONString(jsonObject);
-
-                    //write json into stream
                     ps.println(jsonText);
                     System.out.println(jsonText);
                     ps.flush();
-
-                    //read from stream
                     inComing = dis.readLine();
                     System.out.println(inComing);
                     obj = new JSONParser().parse(inComing);
                     jo2 = (JSONObject) obj;
                     _type = (String) jo2.get("TYPE");
                     _key = (String) jo2.get("KEY");
+                    //_key="SUCCESS";
 
                     Platform.runLater(new Runnable() {
                         @Override
@@ -426,42 +431,52 @@ public class LoginBase extends AnchorPane {
                             switch (_key) {
                                 case "SUCCESS": {
                                     try {
+
                                         inComing = dis.readLine();
                                         System.out.println(inComing);
+
                                     } catch (IOException ex) {
                                         Logger.getLogger(LoginBase.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
+                                _clear();
 
                                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                 alert.setTitle("Login");
                                 alert.setHeaderText(null);
                                 alert.setContentText("Login Successfully");
                                 alert.initModality(Modality.APPLICATION_MODAL);
+                                ClientData.setMyEmail(_emailText);
+                                //options.initOwner(this);
 
-                                //when client login i save his email
-                                ClientData.setMyEmail(emailText);
                                 ButtonType btnOk = new ButtonType("ok");
 
                                 alert.getButtonTypes().setAll(btnOk);
+                                
 
                                 Optional<ButtonType> choices = alert.showAndWait();
-
+                                //if (choices.get() == btnOk) 
                                  {
-                                    System.out.println("got Online screen screen");
+
+                                    //closeConnections();
+                                    t.stop();
+
+                                    System.out.println("got next screen");
                                     Parent root;
                                     try {
-                                        _clear();
                                         root = FXMLLoader.load(getClass().getResource("/online/OnlineMainPane.fxml"));
+
                                         Scene scene = new Scene(root);
+
                                         Window window = label.getScene().getWindow();
                                         Stage stage = (Stage) label.getScene().getWindow();
+                                        stage.getIcons().add(new Image(getClass().getResource("/img/logo.png").toExternalForm()));
+
                                         stage.setScene(scene);
                                         stage.resizableProperty().setValue(Boolean.FALSE);
+
                                         stage.show();
 
-                                        closeConnections();
-                                        th.stop();
                                     } catch (IOException ex) {
                                         Logger.getLogger(LoginBase.class.getName()).log(Level.SEVERE, null, ex);
                                     }
@@ -478,15 +493,14 @@ public class LoginBase extends AnchorPane {
                                 default:
                                     Alert alert2 = new Alert(Alert.AlertType.ERROR);
                                     alert2.setTitle("Login Erorr");
-                                    alert2.setContentText("Email Not found \n or you Mayn't Register ");
+                                    alert2.setContentText("Email Not Found  \n May be you didn't Register or Wrote the email Incorrectly");
                                     alert2.showAndWait();
                             }
                         }
                     });
 
                 } catch (IOException ex) {
-                    ///when there is a problem in server
-                    th.stop();
+                    stop();
 
                 } catch (ParseException ex) {
                     Logger.getLogger(LoginBase.class.getName()).log(Level.SEVERE, null, ex);
@@ -494,24 +508,10 @@ public class LoginBase extends AnchorPane {
 
             }
         };
-        th.setDaemon(true);
-        th.start();
+        t.setDaemon(true);
+        t.start();
 
     }
 
-    void closeConnections() {
-
-        System.out.println("close Connection");
-        try {
-            ps.close();
-            dis.close();
-            client.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(LoginBase.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
+    
 }
