@@ -644,7 +644,7 @@ public class OnlineMainPaneController implements Initializable {
                     Scene scene = new Scene(root);
 
                     Stage stage = (Stage) playerList.getScene().getWindow();
-                                stage.getIcons().add(new Image(getClass().getResource("/img/logo.png").toExternalForm()));
+                //                stage.getIcons().add(new Image(getClass().getResource("/img/logo.png").toExternalForm()));
 
 
                     stage.setScene(scene);
@@ -667,11 +667,12 @@ public class OnlineMainPaneController implements Initializable {
     //****************************************************************************************//
     private void firetheGame(boolean x) {
 
-        closeConnections();
 
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
+                
+                closeConnections();
 
                 System.out.println("Enter fireGame ");
 
@@ -703,7 +704,7 @@ public class OnlineMainPaneController implements Initializable {
                         Scene scene = new Scene(root);
 
                         Stage stage = (Stage) playerList.getScene().getWindow();
-                                    stage.getIcons().add(new Image(getClass().getResource("/img/logo.png").toExternalForm()));
+                        //            stage.getIcons().add(new Image(getClass().getResource("/img/logo.png").toExternalForm()));
 
 
                         stage.setScene(scene);

@@ -290,21 +290,44 @@ public class OnlineGamePaneController implements Initializable {
         }
         if (isGameEnds == true) {
             //first player win
-            if (!player1Allow && isDraw == false) {
+            
+            String me = ClientData.getMyEmail();//this
+            //alert to first player win when he win
+            if (!player1Allow && isDraw == false && me.equals(evaluateboard(boardButtons)) ) {
                 theWinnerName = "Win";
                 theWinner = evaluateboard(boardButtons);
                 getTheWinnerName();
 
-            } //second player win
-            else if (player1Allow && isDraw == false) {
+            }
+            //alert to first player win when he lose
+            else if (!player1Allow && isDraw == false && !me.equals(evaluateboard(boardButtons))) {
                 theWinnerName = "Lose";
                 theWinner = evaluateboard(boardButtons);
                 lostSound.play();
                 lostSound.setVolume(4);
-
+                
                 getTheWinnerName();
 
-            } else if (!player1Allow && isDraw == true) {
+            }
+            //alert to second player win when he win
+            else if (player1Allow && isDraw == false && !me.equals(evaluateboard(boardButtons))) {
+                theWinnerName = "Win";
+                theWinner = evaluateboard(boardButtons);               
+                getTheWinnerName();
+
+            }
+            //alert to second player win when he lose
+            else if (player1Allow && isDraw == false&& me.equals(evaluateboard(boardButtons)) ) {
+                theWinnerName = "Lose";
+                theWinner = evaluateboard(boardButtons);
+                lostSound.play();
+                lostSound.setVolume(4);
+                
+                getTheWinnerName();
+
+            }
+            
+             else if (!player1Allow && isDraw == true) {
                 theWinnerName = "DRAW!";
                 theWinner = "Draw";
                 drawsound.play();
@@ -366,6 +389,9 @@ public class OnlineGamePaneController implements Initializable {
                 }
             }
         } else {
+            
+            String me = ClientData.getMyEmail();//this
+
 
             if (!player1Allow) {
                 sendGameResult();
@@ -384,14 +410,24 @@ public class OnlineGamePaneController implements Initializable {
             Optional<ButtonType> choices = showWinner.showAndWait();
             //if (choices.get() == btnOk) 
             {
-                if (!player1Allow) {
+                if (!player1Allow && me.equals(evaluateboard(boardButtons))) {
+
+                    playVidioWinner();
+                }
+                if (player1Allow && ! me.equals(evaluateboard(boardButtons))) {
+
                     playVidioWinner();
 
                 }
-                if (player1Allow) {
+                 if (!player1Allow && !me.equals(evaluateboard(boardButtons))) {
+
+                     backToOnlineScreen();
+                     
+                }
+                if (player1Allow &&  me.equals(evaluateboard(boardButtons))) {
 
                     backToOnlineScreen();
-
+                    
                 }
             }
         }

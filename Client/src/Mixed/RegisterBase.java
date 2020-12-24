@@ -218,7 +218,6 @@ public class RegisterBase extends AnchorPane {
         glow.setInput(lighting);
         btnBack.setEffect(glow);
 
-
         btnRegister.setDefaultButton(true);
         btnRegister.setLayoutX(304.0);
         btnRegister.setLayoutY(584.0);
@@ -239,7 +238,7 @@ public class RegisterBase extends AnchorPane {
         label3.setPrefWidth(200.0);
         label3.setText("Confirm The Password");
         label3.setStyle("-fx-text-fill: #caeb0e;");
-       // label3.setTextFill(javafx.scene.paint.Color.valueOf("#342ee8"));
+        // label3.setTextFill(javafx.scene.paint.Color.valueOf("#342ee8"));
         label3.setFont(new Font(20.0));
 
         confPassWordError.setLayoutX(326.0);
@@ -311,6 +310,9 @@ public class RegisterBase extends AnchorPane {
         stackPane0.getChildren().add(confPasswordField);
         getChildren().add(stackPane0);
 
+        //////////////////////////////////////////
+        //**when checkbox is selected the password become visible
+        //////////////////////////////////////////
         checkBoxId1.selectedProperty().addListener(((observable, oldValue, newValue) -> {
             String temp;
             if (checkBoxId1.isSelected()) {
@@ -322,7 +324,6 @@ public class RegisterBase extends AnchorPane {
                 passPasswordField.setText(passTextField.getText());
                 passPasswordField.toFront();
             }
-            // passwordtext=temp;
 
         }));
         checkBoxId2.selectedProperty().addListener(((observable, oldValue, newValue) -> {
@@ -339,8 +340,12 @@ public class RegisterBase extends AnchorPane {
         btnRegister.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
+                ////////
+                //**get data from text field
+                ////////
                 getData();
-                //isIp = validateIp(ipText);
+
                 isName = validateName(nameText);
                 isEmail = validateEmail(emailText);
                 isPassword = validatePassword(passwordtext);
@@ -348,10 +353,10 @@ public class RegisterBase extends AnchorPane {
                 isPasscon = confPass(passwordConfText);
 
                 if (!isName || !isEmail || !isPassword || !isPasscon) {
+                    //there is error in validation
                 } else {
-
+                    //validation is succeeded
                     connectServer(nameText, emailText, passwordtext);
-                    //key = "SUCCESS";
 
                 }
 
@@ -370,6 +375,9 @@ public class RegisterBase extends AnchorPane {
 
     }
 
+    ////////////////////////
+    //clear text fields
+    ////////////////////////
     void clear() {
         nameField.clear();
         nameError.setText("");
@@ -379,18 +387,22 @@ public class RegisterBase extends AnchorPane {
         passwordError.setText("");
         confPasswordField.clear();
         confPassWordError.setText("");
-//        ipField.clear();
-//        ipError.setText("");
+
     }
 
+    ////////////////////////
+    //get data from textfields
+    ////////////////////////
     void getData() {
         nameText = nameField.getText();
         emailText = emailField.getText();
         passwordtext = !checkBoxId1.isSelected() ? passPasswordField.getText() : passTextField.getText();
         passwordConfText = !checkBoxId2.isSelected() ? confPasswordField.getText() : confTextField.getText();
-        //  ipText = ipField.getText();
 
     }
+////////////////////////
+    //check if email is valid or not
+    ////////////////////////
 
     boolean validateEmail(String email) {
         final String emailPattern = "^(?=.{1,64}@)[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*@"
@@ -406,6 +418,9 @@ public class RegisterBase extends AnchorPane {
         }
 
     }
+////////////////////////
+    //check if name is valid or not
+    ////////////////////////
 
     boolean validateName(String name) {
         final String namePattern = "[A-Za-z0-9]+";
@@ -413,7 +428,7 @@ public class RegisterBase extends AnchorPane {
         Matcher matcher = pattern.matcher(name);
 
         if (name.isEmpty() || !matcher.matches()) {
-            nameError.setText("your name must be valid and must has length between 6 and 30 char");
+            nameError.setText("your name must be valid and more than 6 chars");
             return false;
         } else {
             nameError.setText("");
@@ -422,6 +437,9 @@ public class RegisterBase extends AnchorPane {
 
     }
 
+    ////////////////////////
+    //check if password is valid or not
+    ////////////////////////
     boolean validatePassword(String pass) {
 
         if (pass.isEmpty() || pass.trim().length() < 8) {
@@ -434,28 +452,9 @@ public class RegisterBase extends AnchorPane {
 
     }
 
-//    boolean validateIp(String ip) {
-//        String zeroTo255
-//                = "(\\d{1,2}|(0|1)\\"
-//                + "d{2}|2[0-4]\\d|25[0-5])";
-//        String regex
-//                = zeroTo255 + "\\."
-//                + zeroTo255 + "\\."
-//                + zeroTo255 + "\\."
-//                + zeroTo255;
-//
-//        Pattern pattern = Pattern.compile(regex);
-//        Matcher matcher = pattern.matcher(ip);
-//
-//        if (!matcher.matches()) {
-//            ipError.setText("IP address must be valid");
-//            return false;
-//        } else {
-//            ipError.setText("");
-//            return true;
-//        }
-//
-//    }
+////////////////////////
+    //check if two passwords are identical or not
+    ////////////////////////
     boolean confPass(String pass) {
 
         if (!pass.equals(passwordtext)) {
@@ -474,18 +473,22 @@ public class RegisterBase extends AnchorPane {
             @Override
             public void run() {
                 try {
-
-                    client = new Socket(IpPaneController.iipp, IpPaneController.PORT_NUMBER);
+                    //connect to the server
+                    client = new Socket(IpPaneController.iipp, 5005);
                     dis = new DataInputStream(client.getInputStream());
                     ps = new PrintStream(client.getOutputStream());
+
+                    //prepare json
                     jsonObject = new JSONObject();
                     jsonObject.put("TYPE", "REGISTER");
                     jsonObject.put("NAME", name);
                     jsonObject.put("EMAIL", email);
                     jsonObject.put("PASSWORD", password);
                     jsonText = JSONValue.toJSONString(jsonObject);
+                    //write json into stream
                     ps.println(jsonText);
                     ps.flush();
+                    //read from stream
                     inComing = dis.readLine();
                     obj = new JSONParser().parse(inComing);
                     jo2 = (JSONObject) obj;
@@ -501,17 +504,18 @@ public class RegisterBase extends AnchorPane {
                         public void run() {
                             switch (key) {
                                 case "SUCCESS":
-                                    
-                                    closeConnections();
-                                    t.stop();
+                                    //succed to register
                                     Alert alretSuccess = new Alert(Alert.AlertType.NONE, "you are successfully registered", ButtonType.OK);
                                     alretSuccess.setTitle("Succes");
                                     alretSuccess.showAndWait();
                                     Manager.viewPane(Manager.login);
                                     clear();
-                                    System.out.println("Moved");
+                                    closeConnections();
+                                    t.stop();
+
                                     break;
                                 case "EMAIL_IS_USED_BEFORE":
+                                    //failed to register
                                     Alert alertError = new Alert(Alert.AlertType.ERROR);
                                     alertError.setTitle("Error ");
                                     alertError.setHeaderText("Email is already registered");
@@ -537,6 +541,7 @@ public class RegisterBase extends AnchorPane {
         t.start();
 
     }
+
     void closeConnections() {
 
         System.out.println("close Connection");
@@ -547,7 +552,6 @@ public class RegisterBase extends AnchorPane {
         } catch (IOException ex) {
             Logger.getLogger(RegisterBase.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
     }
 
